@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script type="text/javascript" src="Mandatly_CookieCompliance::js/mandatly-cookie-compliance-admin.js" />
+    </head>
+    <body>
+
+        <referenceContainer name="content">
+            <block class="Magento\Backend\Block\Template" name="mdt-backend" template="Mandatly_CookieCompliance::mandatly-cookie-compliance.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+          <add id="Mandatly_CookieCompliance::compliance" title="Mandatly" module="Mandatly_CookieCompliance" sortOrder="51" action="mandatly/compliance" resource="Mandatly_CookieCompliance::compliance_configuration"/>
+        
+    </menu>
+</config>

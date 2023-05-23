@@ -1,0 +1,119 @@
+<?php
+    $helper = $this->helper('Mandatly\CookieCompliance\Helper\Data');
+?>
+<div id="mdt-settings-area">
+    <div class="mdt-settings-area">
+        <div class="mdt-header">
+            <div class="mdt-container">
+                <div class="mdt-header-content">
+                <img src="<?= $block->getViewFileUrl('Mandatly_CookieCompliance::assets/w-logo.svg'); ?>" alt=""/>
+                </div>
+            </div>
+        </div>
+        <div class="mdt-sub-header">
+            <div class="mdt-container">
+                <div class="mdt-sub-header-content">
+                    <h1><?= __('Cookie Compliance and Consent Solution') ?></h1>
+                    <p><?= __('Mandatly\'s easy-to-use cookie compliance and consent solution allows you to manage cookie consents and assists in becoming compliant with GDPR, LGPD, CCPA/CPRA, e-privacy directive and other regulations.')  ; ?></p>
+                </div>
+            </div>
+        </div>
+        <div id="activation-notice" class="success-msg" hidden>
+            <p id="msg-notice"></p>
+            <button type="button" class="notice-dismiss" id="dismiss">x</button>
+        </div>
+        <div id="mdt-settings-box">
+            <div class="banner_desc_content active-banner">
+                <strong><?= __('Show Banner'); ?></strong>
+                <label class="tooltip">
+                    <img src="<?= $block->getViewFileUrl('Mandatly_CookieCompliance::assets/icon-small-info.png');?>" alt="" />
+                    <span class="tooltiptext"><?= __('Enable or Disable the Mandatly cookie banner on your website without Inactivating the plugin.'); ?></span>
+                </label>
+                <label class="switch demo-mode tooltip">
+                    <?php
+                        $check = "";
+                    if ($helper->getMccData('mdt_cookie_banner_status') === 'true') {
+                        $check = 'checked';
+                    }
+                    ?>
+                    <input type="checkbox" id="slider-status" name="slider-status" <?= $check; ?> />
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="banner_desc_content">
+                <strong><?= __('Demo Mode') ; ?></strong>
+                <label class="tooltip">
+                    <img src="<?= $block->getViewFileUrl('Mandatly_CookieCompliance::assets/icon-small-info.png');?>" alt="" />
+                    <span class="tooltiptext"><?= __('Dummy Banner will be displayed on your website without cookies. Sign up for Mandatly to get banner with cookies and be compliant.'); ?></span>
+                </label>
+                <label class="switch demo-mode tooltip">
+
+                    <?php
+                        $check = "";
+                    if ($helper->getMccComplianceOption() === 'true') {
+                        $check = 'checked';
+                    }
+                    ?>
+                    <input type="checkbox" id="server_mode" name="server_mode" <?= $check; ?> />
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="active-banner mcc_demo_content" >
+                <p class="demo-detail">
+                    <?= __('Demo mode is currently active and displays a dummy banner on your website. To implement actual banner, you can turn off demo mode.') ?>
+                </p>
+            </div>
+            <form id="cookie" class="mcc_live_content" >
+                <input type="hidden" name="form_key" value="<?= $block->getFormKey() ?>" />
+                <input type="hidden" name="url" value="<?= $block->getUrl('mandatly/compliance/ajax'); ?>">
+                <div class="mdt-settings-box-body">
+                    <div class="label-text">
+                        <label><?= __('Website GUID:'); ?></label>
+                        <a class="ab-item" target="_blank" href=" <?= __($block->getBaseUrl()); ?>"><?= __('Preview Banner'); ?>
+                            <img src="<?= $block->getViewFileUrl('Mandatly_CookieCompliance::assets/icon-up-arrow.png');?>" alt="" />
+                        </a>
+                    </div>
+                    <div>
+                        <input type="text" value="<?= $helper->getMccData('mdt_cookie_banner_guid'); ?>" autocomplete="off" id="gidbox" name="gid" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" maxlength="50" required />
+                        <p><span class="not_validated_msg mcc_error_msg mcc_hide"><?= __('Website GUID entered is in an invalid format.'); ?></span>
+                        <span class="not_exists_msg mcc_error_msg mcc_hide"><?= __('Website GUID is not valid. Please enter valid GUID copied from your Mandatly account.'); ?></span></p>
+                        <a class="help_guid_link" href="https://help.mandatly.net/HowtogetWebsiteGUID.html" target="_blank">
+                            <?= __('How to get website GUID?') ; ?></a>
+                    </div>
+                    <div class="btn-sec">
+                        <div class="btn-grp">
+                            <button type="submit" id="submit" name="submit" class="mdt-settings-button"><?= __('Save'); ?></button>
+                            <span class="deactivate_msg mcc_hide"><?= __('Banner successfully implemented but unable to display due to Show Banner option has been disabled. Please enable Show Banner option to display banner in your website.'); ?></span>
+                            <span class="activate_msg mcc_hide"><?= __('Website GUID has been configured and cookie banner has been successfully implemented on your website.'); ?>
+                                <a class="ab-item" target="_blank" href=" <?= __($block->getBaseUrl()); ?>"><?= __('Click here'); ?></a>
+                                <?= __(' to view banner.') ; ?>
+                            </span>
+                            <span class="deactivate_msg_live_opt mcc_hide"><?= __('Cookie banner has been removed from your website.'); ?></span>
+                            <span class="activate_msg_live_opt mcc_hide"><?= __('Cookie banner is now displayed on your website.'); ?></span>
+                            <span class="deactivate_msg_demo_opt mcc_hide"><?= __('Demo cookie banner has been removed from your website.'); ?></span>
+                            <span class="activate_msg_demo_opt mcc_hide"><?= __('Demo cookie banner is now displayed on your website.'); ?></span>
+                            <span class="deactivate_msg_live_load mcc_hide"><?= __('All  the settings have been configured but banner is not live because of Show Banner option has been disabled'); ?></span>
+                            <span class="activate_msg_live_load mcc_hide"><?= __('All the settings of your cookie banner have been configured and the banner is live on website.') ; ?></span>
+                            <span class="deactivate_msg_demo_load mcc_hide"><?= __('Demo banner is not displayed because of Show Banner option has been disabled.'); ?></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="mdt-settings-box-footer">
+                <?= __('You need Mandatly account to implement cookie banner using this plug-in.') ; ?><br />
+                <?= __('Don\'t have Mandatly account?'); ?>
+                <a href="https://www.mandatly.com/pricing/by-solutions#Cookie-Compliance" target="_blank"><?= __('Free Sign up now') ; ?></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+require(['jquery'], function($) {
+
+    $(document).ready(function() {
+            
+        
+    });
+});
+</script>
+

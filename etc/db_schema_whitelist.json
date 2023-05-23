@@ -1,0 +1,13 @@
+{
+    "mdt_config": {
+        "column": {
+            "config_id": true,
+            "mcc_config_key": true,
+            "mcc_config_value": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
